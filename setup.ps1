@@ -5,9 +5,12 @@ $rg = get-AzResourceGroup
 Write-Host "Your randomly-generated suffix for Azure resources is $suffix"
 Write-Host ""
 
-#### ADF
-write-host "deploying data factory resource..."
+######################################
+## ADF
+######################################
 $adfName = "adf-demo-"+$suffix
+write-host "deploying data factory resource ("+$adfName+")..."
+
 New-AzResourceGroupDeployment `
   -Name adfDeployment `
   -ResourceGroupName $rg.ResourceGroupName `
@@ -15,8 +18,13 @@ New-AzResourceGroupDeployment `
   -TemplateParameterFile arm/parameters-adf.json `
   -resourceName $adfName
 
-#### SQL server + database
-write-host "deploying sql server + database resources..."
+######################################
+## SQL server + database
+######################################
+$sqlServerName = "sql-server-demo-"+$suffix
+$sqlDbName = "sql-db-demo-"+$suffix
+write-host "deploying sql server ("+$sqlServerName+") + database ("+$sqlDbName+")..."
+
 $sqlPassword = ""
 $complexPassword = 0
 
@@ -42,34 +50,38 @@ while ($complexPassword -ne 1)
     }
 }
 
-$sqlName = 'sql-demo-'+$suffix
 New-AzResourceGroupDeployment `
     -Name sqlDeployment `
     -ResourceGroupName $rg.ResourceGroupName `
     -TemplateFile arm/template-sql.json `
     -TemplateParameterFile arm/parameters-sql.json `
     -administratorLoginPassword $sqlPassword
-    -Name $sqlName
+    -databaseName $sqlDbName
+    -serverName $sqlServerName
 
 
-#### Storage account
-write-host "deploying storage account resources..."
+######################################
+## Storage account
+######################################
+$storageAccountName = "storagedemo"+$suffix
+write-host "deploying storage account resource ("+$storageAccountName+")..."
 
 New-AzResourceGroupDeployment `
     -Name adlsDeployment `
     -ResourceGroupName $rg.ResourceGroupName `
     -TemplateFile arm/template-adls.json `
     -TemplateParameterFile arm/parameters-adls.json `
+    -storageAccountName $storageAccountName
 
 
 # Upload files
-# write-host "Loading data..."
-# $storageAccount = Get-AzStorageAccount -ResourceGroupName $rg.ResourceGroupName -Name $dataLakeAccountName
-# $storageContext = $storageAccount.Context
-# Get-ChildItem "./data/*.csv" -File | Foreach-Object {
-#     write-host ""
-#     $file = $_.Name
-#     Write-Host $file
-#     $blobPath = "$file"
-#     Set-AzStorageBlobContent -File $_.FullName -Container "files" -Blob $blobPath -Context $storageContext
-# }
+write-host "Loading data into storage account..."
+$storageAccount = Get-AzStorageAccount -ResourceGroupName $rg.ResourceGroupName -Name $storageAccountName
+$storageContext = $storageAccount.Context
+Get-ChildItem "./data/*.csv" -File | Foreach-Object {
+    write-host ""
+    $file = $_.Name
+    Write-Host $file
+    $blobPath = "$file"
+    Set-AzStorageBlobContent -File $_.FullName -Container "files" -Blob $blobPath -Context $storageContext
+}

@@ -3,10 +3,10 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "location": {
-            "value": "southcentralus"
+            "value": "eastus"
         },
         "storageAccountName": {
-            "value": "adlsdemobb"
+            "value": null
         },
         "accountType": {
             "value": "Standard_LRS"
