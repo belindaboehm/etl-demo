@@ -3,15 +3,17 @@ $rg = get-AzResourceGroup
 ### generate random suffix
 [string]$suffix =  -join ((48..57) + (97..122) | Get-Random -Count 7 | % {[char]$_})
 Write-Host "Your randomly-generated suffix for Azure resources is $suffix"
-
+Write-Host ""
 
 #### ADF
 write-host "deploying data factory resource..."
+$adfName = 'adf-demo-'$suffix
 New-AzResourceGroupDeployment `
   -Name adfDeployment `
   -ResourceGroupName $rg.ResourceGroupName `
   -TemplateFile arm/template-adf.json `
-  -TemplateParameterFile arm/parameters-adf.json
+  -TemplateParameterFile arm/parameters-adf.json `
+  -name $adfName
 
 #### SQL server + database
 write-host "deploying sql server + database resources..."
@@ -40,12 +42,14 @@ while ($complexPassword -ne 1)
     }
 }
 
+$sqlName = 'sql-demo-'$suffix
 New-AzResourceGroupDeployment `
     -Name sqlDeployment `
     -ResourceGroupName $rg.ResourceGroupName `
     -TemplateFile arm/template-sql.json `
     -TemplateParameterFile arm/parameters-sql.json `
     -administratorLoginPassword $sqlPassword
+    -Name $sqlName
 
 
 #### Storage account
