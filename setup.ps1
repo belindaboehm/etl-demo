@@ -13,7 +13,7 @@ New-AzResourceGroupDeployment `
   -ResourceGroupName $rg.ResourceGroupName `
   -TemplateFile arm/template-adf.json `
   -TemplateParameterFile arm/parameters-adf.json `
-  -name $adfName
+  -resourceName $adfName
 
 #### SQL server + database
 write-host "deploying sql server + database resources..."
