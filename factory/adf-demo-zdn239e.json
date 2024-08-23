@@ -1,0 +1,9 @@
+{
+	"name": "adf-demo-zdn239e",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "4ae0a49c-dc0d-4af0-b7a9-d7ca68eb9377",
+		"tenantId": "84f1e4ea-8554-43e1-8709-f0b8589ea118"
+	}
+}
