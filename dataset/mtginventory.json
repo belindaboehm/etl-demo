@@ -1,0 +1,16 @@
+{
+	"name": "mtginventory",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqldatabase",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "mtg",
+			"table": "inventory"
+		}
+	}
+}
