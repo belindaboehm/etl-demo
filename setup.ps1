@@ -1,13 +1,13 @@
 $rg = get-AzResourceGroup
 
-# deploy ADF
+#### ADF
 New-AzResourceGroupDeployment `
   -Name adfDeployment `
   -ResourceGroupName $rg.ResourceGroupName `
   -TemplateFile arm/template-adf.json `
   -TemplateParameterFile arm/parameters-adf.json
 
-# deploy SQL
+#### SQL server + database
 write-host ""
 $sqlPassword = ""
 $complexPassword = 0
@@ -40,3 +40,24 @@ New-AzResourceGroupDeployment `
     -TemplateFile arm/template-sql.json `
     -TemplateParameterFile arm/parameters-sql.json `
     -administratorLoginPassword $sqlPassword
+
+
+#### Storage account
+New-AzResourceGroupDeployment `
+    -Name adlsDeployment `
+    -ResourceGroupName $rg.ResourceGroupName `
+    -TemplateFile arm/template-adls.json `
+    -TemplateParameterFile arm/parameters-adls.json `
+
+
+# Upload files
+# write-host "Loading data..."
+# $storageAccount = Get-AzStorageAccount -ResourceGroupName $rg.ResourceGroupName -Name $dataLakeAccountName
+# $storageContext = $storageAccount.Context
+# Get-ChildItem "./data/*.csv" -File | Foreach-Object {
+#     write-host ""
+#     $file = $_.Name
+#     Write-Host $file
+#     $blobPath = "$file"
+#     Set-AzStorageBlobContent -File $_.FullName -Container "files" -Blob $blobPath -Context $storageContext
+# }
