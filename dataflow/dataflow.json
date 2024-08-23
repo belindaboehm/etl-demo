@@ -76,7 +76,7 @@
 				"    iif(instr(Cost, 'W')>0, 'White', \r",
 				"    iif(isNull(Cost), 'Land','Colourless')))))),",
 				"          overallPrice = toDecimal(right(Price, length(Price)-1))*toDecimal(Count)) ~> colourIdentityDerivation",
-				"colourSplit@Other sink(allowSchemaDrift: true,",
+				"colourIdentityDerivation sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     deletable:false,",
 				"     insertable:true,",
