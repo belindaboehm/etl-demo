@@ -7,7 +7,7 @@ Write-Host ""
 
 #### ADF
 write-host "deploying data factory resource..."
-$adfName = 'adf-demo-'$suffix
+$adfName = "adf-demo-"+$suffix
 New-AzResourceGroupDeployment `
   -Name adfDeployment `
   -ResourceGroupName $rg.ResourceGroupName `
@@ -42,7 +42,7 @@ while ($complexPassword -ne 1)
     }
 }
 
-$sqlName = 'sql-demo-'$suffix
+$sqlName = 'sql-demo-'+$suffix
 New-AzResourceGroupDeployment `
     -Name sqlDeployment `
     -ResourceGroupName $rg.ResourceGroupName `
