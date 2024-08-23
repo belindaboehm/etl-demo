@@ -7,7 +7,65 @@
 		},
 		"annotations": [],
 		"type": "AzureSqlTable",
-		"schema": [],
+		"schema": [
+			{
+				"name": "Name",
+				"type": "varchar"
+			},
+			{
+				"name": "Count",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Edition",
+				"type": "varchar"
+			},
+			{
+				"name": "EditionCode",
+				"type": "varchar"
+			},
+			{
+				"name": "Condition",
+				"type": "varchar"
+			},
+			{
+				"name": "Language",
+				"type": "varchar"
+			},
+			{
+				"name": "Foil",
+				"type": "varchar"
+			},
+			{
+				"name": "Type",
+				"type": "varchar"
+			},
+			{
+				"name": "Cost",
+				"type": "varchar"
+			},
+			{
+				"name": "ColourIdentity",
+				"type": "varchar"
+			},
+			{
+				"name": "Rarity",
+				"type": "varchar"
+			},
+			{
+				"name": "Price",
+				"type": "varchar"
+			},
+			{
+				"name": "OverallPrice",
+				"type": "varchar"
+			},
+			{
+				"name": "LastUpdated",
+				"type": "varchar"
+			}
+		],
 		"typeProperties": {
 			"schema": "mtgStg",
 			"table": "inventory"
