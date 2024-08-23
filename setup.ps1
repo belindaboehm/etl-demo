@@ -9,7 +9,7 @@ Write-Host ""
 ## ADF
 ######################################
 $adfName = "adf-demo-"+$suffix
-write-host "deploying data factory resource ("+$adfName+")..."
+write-host "deploying data factory resource ("$adfName")..."
 
 New-AzResourceGroupDeployment `
   -Name adfDeployment `
@@ -23,7 +23,7 @@ New-AzResourceGroupDeployment `
 ######################################
 $sqlServerName = "sql-server-demo-"+$suffix
 $sqlDbName = "sql-db-demo-"+$suffix
-write-host "deploying sql server ("+$sqlServerName+") + database ("+$sqlDbName+")..."
+write-host "deploying sql server ("$sqlServerName") + database ("$sqlDbName")..."
 
 $sqlPassword = ""
 $complexPassword = 0
@@ -55,16 +55,16 @@ New-AzResourceGroupDeployment `
     -ResourceGroupName $rg.ResourceGroupName `
     -TemplateFile arm/template-sql.json `
     -TemplateParameterFile arm/parameters-sql.json `
-    -administratorLoginPassword $sqlPassword
-    -databaseName $sqlDbName
+    -administratorLoginPassword $sqlPassword `
+    -databaseName $sqlDbName `
     -serverName $sqlServerName
 
 
 ######################################
 ## Storage account
 ######################################
-$storageAccountName = "storagedemo"+$suffix
-write-host "deploying storage account resource ("+$storageAccountName+")..."
+$storageAccountName = "adlsdemo"+$suffix
+write-host "deploying storage account resource ("$storageAccountName")..."
 
 New-AzResourceGroupDeployment `
     -Name adlsDeployment `
