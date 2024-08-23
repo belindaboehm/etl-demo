@@ -78,7 +78,7 @@
 				"          Language,",
 				"          Foil,",
 				"          Type,",
-				"          ManaCost = Cost,",
+				"          Cost,",
 				"          ColourIdentity = colourIdentity,",
 				"          Rarity,",
 				"          Price,",
