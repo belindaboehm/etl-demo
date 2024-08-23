@@ -16,7 +16,7 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "mtginventory",
+						"referenceName": "inventoryOutput",
 						"type": "DatasetReference"
 					},
 					"name": "output"
@@ -89,14 +89,12 @@
 				"     skipDuplicateMapOutputs: true) ~> filterColumns",
 				"filterColumns sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     deletable:false,",
-				"     insertable:true,",
-				"     updateable:false,",
-				"     upsertable:false,",
-				"     format: 'table',",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     errorHandlingOption: 'stopOnFirstError') ~> output"
+				"     format: 'table') ~> output"
 			]
 		}
 	}
