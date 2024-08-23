@@ -26,6 +26,9 @@
 				{
 					"name": "colourIdentityDerivation",
 					"description": "derive colour identity - doesn't handle multicoloured"
+				},
+				{
+					"name": "filterColumns"
 				}
 			],
 			"scriptLines": [
@@ -66,7 +69,25 @@
 				"    iif(instr(Cost, 'W')>0, 'White', \r",
 				"    iif(isNull(Cost), 'Land','Colourless')))))),",
 				"          overallPrice = toDecimal(right(Price, length(Price)-1))*toDecimal(Count)) ~> colourIdentityDerivation",
-				"colourIdentityDerivation sink(allowSchemaDrift: true,",
+				"colourIdentityDerivation select(mapColumn(",
+				"          Name,",
+				"          Count,",
+				"          Edition,",
+				"          {Edition Code},",
+				"          Condition,",
+				"          Language,",
+				"          Foil,",
+				"          Type,",
+				"          ManaCost = Cost,",
+				"          ColourIdentity = colourIdentity,",
+				"          Rarity,",
+				"          Price,",
+				"          OverallPrice = overallPrice,",
+				"          {Last Updated}",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> filterColumns",
+				"filterColumns sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     deletable:false,",
 				"     insertable:true,",
