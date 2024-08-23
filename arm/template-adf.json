@@ -10,7 +10,7 @@
             "defaultValue": "",
             "type": "string"
         },
-        "name": {
+        "resourceName": {
             "defaultValue": "myv2datafactory",
             "type": "string"
         },
