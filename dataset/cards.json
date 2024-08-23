@@ -1,5 +1,5 @@
 {
-	"name": "Parquet1",
+	"name": "cards",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "adls",
