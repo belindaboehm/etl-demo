@@ -221,16 +221,7 @@
                             "properties": {
                                 "subnet": {
                                     "id": "[parameters('privateEndpoints')[copyIndex()].privateEndpointConfiguration.privateEndpoint.properties.subnet.id]"
-                                },
-                                "privateLinkServiceConnections": [
-                                    {
-                                        "name": "[parameters('privateEndpoints')[copyIndex()].privateEndpointConfiguration.privateEndpoint.name]",
-                                        "properties": {
-                                            "privateLinkServiceId": "[concat('/subscriptions/',parameters('subscription'),'/resourcegroups/',parameters('resourceGroup'), '/providers/Microsoft.DataFactory/factories/', parameters('name'))]",
-                                            "groupIds": "[parameters('privateEndpoints')[copyIndex()].privateEndpointConfiguration.privateEndpoint.properties.privateLinkServiceConnections[0].properties.groupIds]"
-                                        }
-                                    }
-                                ]
+                                }
                             },
                             "tags": {}
                         }
