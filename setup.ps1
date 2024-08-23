@@ -5,18 +5,6 @@ $rg = get-AzResourceGroup
 Write-Host "Your randomly-generated suffix for Azure resources is $suffix"
 Write-Host ""
 
-######################################
-## ADF
-######################################
-$adfName = "adf-demo-"+$suffix
-write-host "deploying data factory resource ("$adfName")..."
-
-New-AzResourceGroupDeployment `
-  -Name adfDeployment `
-  -ResourceGroupName $rg.ResourceGroupName `
-  -TemplateFile arm/template-adf.json `
-  -TemplateParameterFile arm/parameters-adf.json `
-  -resourceName $adfName
 
 ######################################
 ## SQL server + database
@@ -77,12 +65,25 @@ New-AzResourceGroupDeployment `
 
 # Upload files
 write-host "Loading data into storage account..."
-$storageAccount = Get-AzStorageAccount -ResourceGroupName $rg.ResourceGroupName -Name $storageAccountName
+$storageAccount = Get-AzStorageAccount -ResourceGroupName $rg.ResourceGroupName -Name $accountName
 $storageContext = $storageAccount.Context
-Get-ChildItem "./data/*.csv" -File | Foreach-Object {
+Get-ChildItem "./data/*.*" -File | Foreach-Object {
     write-host ""
     $file = $_.Name
     Write-Host $file
     $blobPath = "$file"
     Set-AzStorageBlobContent -File $_.FullName -Container "files" -Blob $blobPath -Context $storageContext
 }
+
+######################################
+## ADF
+######################################
+$adfName = "adf-demo-"+$suffix
+write-host "deploying data factory resource ("$adfName")..."
+
+New-AzResourceGroupDeployment `
+  -Name adfDeployment `
+  -ResourceGroupName $rg.ResourceGroupName `
+  -TemplateFile arm/template-adf.json `
+  -TemplateParameterFile arm/parameters-adf.json `
+  -resourceName $adfName
