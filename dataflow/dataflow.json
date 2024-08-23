@@ -24,9 +24,6 @@
 			],
 			"transformations": [
 				{
-					"name": "colourSplit"
-				},
-				{
 					"name": "colourIdentityDerivation",
 					"description": "derive colour identity - doesn't handle multicoloured"
 				}
@@ -62,13 +59,6 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> inventory",
-				"colourIdentityDerivation split(Type==\"Land\",",
-				"     colourIdentity=='Blue',",
-				"     colourIdentity=='Red',",
-				"     colourIdentity=='Green',",
-				"     colourIdentity=='Black',",
-				"     colourIdentity=='White',",
-				"     disjoint: false) ~> colourSplit@(Land, Blue, Red, Green, Black, White, Other)",
 				"inventory derive(colourIdentity = iif(instr(Cost, 'B')>0, 'Black', \r",
 				"    iif(instr(Cost, 'W')>0, 'White', \r",
 				"    iif(instr(Cost, 'R')>0, 'Red',\r",
