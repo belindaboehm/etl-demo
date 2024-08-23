@@ -1,9 +1,9 @@
 {
-	"name": "pipeline1",
+	"name": "load data",
 	"properties": {
 		"activities": [
 			{
-				"name": "Data flow1",
+				"name": "transform and copy into staging",
 				"type": "ExecuteDataFlow",
 				"dependsOn": [],
 				"policy": {
@@ -24,6 +24,39 @@
 						"computeType": "General"
 					},
 					"traceLevel": "Fine"
+				}
+			},
+			{
+				"name": "merge",
+				"type": "Script",
+				"dependsOn": [
+					{
+						"activity": "transform and copy into staging",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"linkedServiceName": {
+					"referenceName": "sqldatabase",
+					"type": "LinkedServiceReference"
+				},
+				"typeProperties": {
+					"scripts": [
+						{
+							"type": "Query",
+							"text": "MERGE\r\n    INTO [mtg].[inventory] live\r\n    USING [mtgStg].[inventory] stg\r\n    ON live.[Name] = stg.[Name]\r\n\t\tAND live.[EditionCode] = stg.[EditionCode]\r\n\t\tAND live.[Foil] = stg.[Foil]\r\n\t\tAND live.[Condition] = stg.[Condition]\r\n    WHEN MATCHED \r\n\t\tAND live.[Count] <> stg.[Count]\r\n        THEN UPDATE SET\r\n\t\t\tlive.[Name] = stg.[Name],\r\n\t\t\tlive.[Count] = stg.[Count],\r\n\t\t\tlive.[Edition] = stg.[Edition],\r\n\t\t\tlive.[EditionCode] = stg.[EditionCode],\r\n\t\t\tlive.[Condition] = stg.[Condition],\r\n\t\t\tlive.[Language] = stg.[Language],\r\n\t\t\tlive.[Foil] = stg.[Foil],\r\n\t\t\tlive.[Type] = stg.[Type],\r\n\t\t\tlive.[Cost] = stg.[Cost],\r\n\t\t\tlive.[ColourIdentity] = stg.[ColourIdentity],\r\n\t\t\tlive.[Rarity] = stg.[Rarity],\r\n\t\t\tlive.[Price] = stg.[Price],\r\n\t\t\tlive.[OverallPrice] = stg.[OverallPrice],\r\n\t\t\tlive.[LastUpdated] = SYSDATETIMEOFFSET()\r\n    WHEN NOT MATCHED BY TARGET\r\n        THEN INSERT (Name, Count, Edition, EditionCode, Condition, Language, Foil, Type, Cost, ColourIdentity, Rarity, Price, OverallPrice, LastUpdated)\r\n\t\tVALUES (stg.Name, stg.Count, stg.Edition, stg.EditionCode, stg.Condition, stg.Language, stg.Foil, stg.Type, stg.Cost, stg.ColourIdentity, stg.Rarity, stg.Price, stg.OverallPrice, SYSDATETIMEOFFSET())\r\n\t;"
+						}
+					],
+					"scriptBlockExecutionTimeout": "02:00:00"
 				}
 			}
 		],
