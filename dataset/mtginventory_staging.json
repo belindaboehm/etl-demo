@@ -1,5 +1,5 @@
 {
-	"name": "mtginventory",
+	"name": "mtginventory_staging",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "sqldatabase",
@@ -9,7 +9,7 @@
 		"type": "AzureSqlTable",
 		"schema": [],
 		"typeProperties": {
-			"schema": "mtg",
+			"schema": "mtgStg",
 			"table": "inventory"
 		}
 	}
