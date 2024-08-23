@@ -24,7 +24,7 @@
 			],
 			"transformations": [
 				{
-					"name": "split1"
+					"name": "colourSplit"
 				},
 				{
 					"name": "colourIdentityDerivation",
@@ -68,14 +68,14 @@
 				"     colourIdentity=='Green',",
 				"     colourIdentity=='Black',",
 				"     colourIdentity=='White',",
-				"     disjoint: false) ~> split1@(Land, Blue, Red, Green, Black, White, Other)",
+				"     disjoint: false) ~> colourSplit@(Land, Blue, Red, Green, Black, White, Other)",
 				"inventory derive(colourIdentity = iif(instr(Cost, 'B')>0, 'Black', \r",
 				"    iif(instr(Cost, 'W')>0, 'White', \r",
 				"    iif(instr(Cost, 'R')>0, 'Red',\r",
 				"    iif(instr(Cost, 'U')>0, 'Blue',\r",
 				"    iif(instr(Cost, 'W')>0, 'White', \r",
 				"    iif(isNull(Cost), 'Land','Colourless'))))))) ~> colourIdentityDerivation",
-				"split1@Land sink(allowSchemaDrift: true,",
+				"colourSplit@Other sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     deletable:false,",
 				"     insertable:true,",
