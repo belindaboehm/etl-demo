@@ -1,0 +1,109 @@
+{
+	"name": "sets",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "sets.parquet",
+				"fileSystem": "files"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "baseSetSize",
+				"type": "INT64"
+			},
+			{
+				"name": "block",
+				"type": "UTF8"
+			},
+			{
+				"name": "cardsphereSetId",
+				"type": "DOUBLE"
+			},
+			{
+				"name": "code",
+				"type": "UTF8"
+			},
+			{
+				"name": "isFoilOnly",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "isForeignOnly",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "isNonFoilOnly",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "isOnlineOnly",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "isPartialPreview",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "keyruneCode",
+				"type": "UTF8"
+			},
+			{
+				"name": "languages",
+				"type": "UTF8"
+			},
+			{
+				"name": "mcmId",
+				"type": "DOUBLE"
+			},
+			{
+				"name": "mcmIdExtras",
+				"type": "DOUBLE"
+			},
+			{
+				"name": "mcmName",
+				"type": "UTF8"
+			},
+			{
+				"name": "mtgoCode",
+				"type": "UTF8"
+			},
+			{
+				"name": "name",
+				"type": "UTF8"
+			},
+			{
+				"name": "parentCode",
+				"type": "UTF8"
+			},
+			{
+				"name": "releaseDate",
+				"type": "UTF8"
+			},
+			{
+				"name": "tcgplayerGroupId",
+				"type": "DOUBLE"
+			},
+			{
+				"name": "tokenSetCode",
+				"type": "UTF8"
+			},
+			{
+				"name": "totalSetSize",
+				"type": "INT64"
+			},
+			{
+				"name": "type",
+				"type": "UTF8"
+			}
+		]
+	}
+}
