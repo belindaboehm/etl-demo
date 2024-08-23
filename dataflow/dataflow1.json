@@ -48,6 +48,9 @@
 					"name": "setJoin"
 				},
 				{
+					"name": "setCodes"
+				},
+				{
 					"name": "select2"
 				}
 			],
@@ -194,7 +197,7 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
 				"     format: 'parquet') ~> set",
-				"inventory, setJoin join(inventory@Name == cards@name,",
+				"inventory, setCodes join(inventory@Name == cards@name,",
 				"     joinType:'inner',",
 				"     matchType:'exact',",
 				"     ignoreSpaces: false,",
@@ -216,9 +219,12 @@
 				"     matchType:'exact',",
 				"     ignoreSpaces: false,",
 				"     broadcast: 'auto')~> setJoin",
+				"select2 aggregate(groupBy(name = set@name),",
+				"     setCode = max(setCode)) ~> setCodes",
 				"setJoin select(mapColumn(",
-				"          setCode,",
-				"          code",
+				"          CardName = cards@name,",
+				"          SetName = set@name,",
+				"          mcmName",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> select2",
