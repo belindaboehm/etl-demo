@@ -7,10 +7,6 @@
 		},
 		"annotations": [],
 		"type": "AzureSqlTable",
-		"schema": [],
-		"typeProperties": {
-			"schema": "mtg",
-			"table": "land"
-		}
+		"schema": []
 	}
 }
