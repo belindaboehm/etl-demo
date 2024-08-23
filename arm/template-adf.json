@@ -112,7 +112,7 @@
             "condition": "[equals(parameters('version'), 'V2')]",
             "type": "Microsoft.DataFactory/factories",
             "apiVersion": "2018-06-01",
-            "name": "[parameters('name')]",
+            "name": "[parameters('resourceName')]",
             "location": "[parameters('location')]",
             "identity": "[if(parameters('enableCMK'),json(parameters('userAssignedIdentitiesStr')), parameters('userAssignedIdentities'))]",
             "properties": {
@@ -124,17 +124,17 @@
             "resources": [
                 {
                     "condition": "[and(equals(parameters('version'), 'V2'), parameters('vNetEnabled'))]",
-                    "name": "[concat(parameters('name'), '/default')]",
+                    "name": "[concat(parameters('resourceName'), '/default')]",
                     "type": "Microsoft.DataFactory/factories/managedVirtualNetworks",
                     "apiVersion": "2018-06-01",
                     "properties": {},
                     "dependsOn": [
-                        "[concat('Microsoft.DataFactory/factories/', parameters('name'))]"
+                        "[concat('Microsoft.DataFactory/factories/', parameters('resourceName'))]"
                     ]
                 },
                 {
                     "condition": "[and(equals(parameters('version'), 'V2'), parameters('vNetEnabled'))]",
-                    "name": "[concat(parameters('name'), '/AutoResolveIntegrationRuntime')]",
+                    "name": "[concat(parameters('resourceName'), '/AutoResolveIntegrationRuntime')]",
                     "type": "Microsoft.DataFactory/factories/integrationRuntimes",
                     "apiVersion": "2018-06-01",
                     "properties": {
@@ -155,8 +155,8 @@
                         }
                     },
                     "dependsOn": [
-                        "[concat('Microsoft.DataFactory/factories/', parameters('name'))]",
-                        "[concat('Microsoft.DataFactory/factories/', parameters('name'), '/managedVirtualNetworks/default')]"
+                        "[concat('Microsoft.DataFactory/factories/', parameters('resourceName'))]",
+                        "[concat('Microsoft.DataFactory/factories/', parameters('resourceName'), '/managedVirtualNetworks/default')]"
                     ]
                 }
             ]
@@ -169,7 +169,7 @@
             "subscriptionId": "[parameters('privateEndpoints')[copyIndex()].privateEndpointConfiguration.subscription.subscriptionId]",
             "location": "[parameters('privateEndpoints')[copyIndex()].privateEndpointConfiguration.privateEndpoint.location]",
             "dependsOn": [
-                "[parameters('name')]"
+                "[parameters('resourceName')]"
             ],
             "copy": {
                 "name": "privateendpointscopy",
@@ -200,7 +200,7 @@
             "resourceGroup": "[parameters('privateEndpoints')[copyIndex()].privateEndpointConfiguration.resourceGroup.value.name]",
             "subscriptionId": "[parameters('privateEndpoints')[copyIndex()].privateEndpointConfiguration.subscription.subscriptionId]",
             "dependsOn": [
-                "[parameters('name')]",
+                "[parameters('resourceName')]",
                 "[concat('deployResourceGroup-', parameters('privateEndpoints')[copyIndex()].privateEndpointConfiguration.resourceGroup.value.name)]"
             ],
             "copy": {
