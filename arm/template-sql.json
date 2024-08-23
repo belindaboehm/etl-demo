@@ -7,7 +7,7 @@
             "defaultValue": ""
         },
         "administratorLoginPassword": {
-            "type": "securestring",
+            "type": "string",
             "defaultValue": ""
         },
         "administrators": {
