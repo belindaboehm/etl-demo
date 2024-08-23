@@ -1,0 +1,333 @@
+{
+	"name": "Parquet1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "cards.parquet",
+				"fileSystem": "files"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "artist",
+				"type": "UTF8"
+			},
+			{
+				"name": "artistIds",
+				"type": "UTF8"
+			},
+			{
+				"name": "asciiName",
+				"type": "UTF8"
+			},
+			{
+				"name": "attractionLights",
+				"type": "UTF8"
+			},
+			{
+				"name": "availability",
+				"type": "UTF8"
+			},
+			{
+				"name": "boosterTypes",
+				"type": "UTF8"
+			},
+			{
+				"name": "borderColor",
+				"type": "UTF8"
+			},
+			{
+				"name": "cardParts",
+				"type": "UTF8"
+			},
+			{
+				"name": "colorIdentity",
+				"type": "UTF8"
+			},
+			{
+				"name": "colorIndicator",
+				"type": "UTF8"
+			},
+			{
+				"name": "colors",
+				"type": "UTF8"
+			},
+			{
+				"name": "defense",
+				"type": "UTF8"
+			},
+			{
+				"name": "duelDeck",
+				"type": "UTF8"
+			},
+			{
+				"name": "edhrecRank",
+				"type": "DOUBLE"
+			},
+			{
+				"name": "edhrecSaltiness",
+				"type": "DOUBLE"
+			},
+			{
+				"name": "faceConvertedManaCost",
+				"type": "DOUBLE"
+			},
+			{
+				"name": "faceFlavorName",
+				"type": "UTF8"
+			},
+			{
+				"name": "faceManaValue",
+				"type": "DOUBLE"
+			},
+			{
+				"name": "faceName",
+				"type": "UTF8"
+			},
+			{
+				"name": "finishes",
+				"type": "UTF8"
+			},
+			{
+				"name": "flavorName",
+				"type": "UTF8"
+			},
+			{
+				"name": "flavorText",
+				"type": "UTF8"
+			},
+			{
+				"name": "frameEffects",
+				"type": "UTF8"
+			},
+			{
+				"name": "frameVersion",
+				"type": "UTF8"
+			},
+			{
+				"name": "hand",
+				"type": "UTF8"
+			},
+			{
+				"name": "hasAlternativeDeckLimit",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "hasContentWarning",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "hasFoil",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "hasNonFoil",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "isAlternative",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "isFullArt",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "isFunny",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "isOnlineOnly",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "isOversized",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "isPromo",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "isRebalanced",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "isReprint",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "isReserved",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "isStarter",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "isStorySpotlight",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "isTextless",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "isTimeshifted",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "keywords",
+				"type": "UTF8"
+			},
+			{
+				"name": "language",
+				"type": "UTF8"
+			},
+			{
+				"name": "layout",
+				"type": "UTF8"
+			},
+			{
+				"name": "leadershipSkills",
+				"type": "UTF8"
+			},
+			{
+				"name": "life",
+				"type": "UTF8"
+			},
+			{
+				"name": "loyalty",
+				"type": "UTF8"
+			},
+			{
+				"name": "manaCost",
+				"type": "UTF8"
+			},
+			{
+				"name": "manaValue",
+				"type": "DOUBLE"
+			},
+			{
+				"name": "name",
+				"type": "UTF8"
+			},
+			{
+				"name": "number",
+				"type": "UTF8"
+			},
+			{
+				"name": "originalPrintings",
+				"type": "UTF8"
+			},
+			{
+				"name": "originalReleaseDate",
+				"type": "UTF8"
+			},
+			{
+				"name": "originalText",
+				"type": "UTF8"
+			},
+			{
+				"name": "originalType",
+				"type": "UTF8"
+			},
+			{
+				"name": "otherFaceIds",
+				"type": "UTF8"
+			},
+			{
+				"name": "power",
+				"type": "UTF8"
+			},
+			{
+				"name": "printings",
+				"type": "UTF8"
+			},
+			{
+				"name": "promoTypes",
+				"type": "UTF8"
+			},
+			{
+				"name": "rarity",
+				"type": "UTF8"
+			},
+			{
+				"name": "rebalancedPrintings",
+				"type": "UTF8"
+			},
+			{
+				"name": "relatedCards",
+				"type": "UTF8"
+			},
+			{
+				"name": "securityStamp",
+				"type": "UTF8"
+			},
+			{
+				"name": "setCode",
+				"type": "UTF8"
+			},
+			{
+				"name": "side",
+				"type": "UTF8"
+			},
+			{
+				"name": "signature",
+				"type": "UTF8"
+			},
+			{
+				"name": "sourceProducts",
+				"type": "UTF8"
+			},
+			{
+				"name": "subsets",
+				"type": "UTF8"
+			},
+			{
+				"name": "subtypes",
+				"type": "UTF8"
+			},
+			{
+				"name": "supertypes",
+				"type": "UTF8"
+			},
+			{
+				"name": "text",
+				"type": "UTF8"
+			},
+			{
+				"name": "toughness",
+				"type": "UTF8"
+			},
+			{
+				"name": "type",
+				"type": "UTF8"
+			},
+			{
+				"name": "types",
+				"type": "UTF8"
+			},
+			{
+				"name": "uuid",
+				"type": "UTF8"
+			},
+			{
+				"name": "variations",
+				"type": "UTF8"
+			},
+			{
+				"name": "watermark",
+				"type": "UTF8"
+			}
+		]
+	}
+}
