@@ -68,7 +68,7 @@
 				"    iif(instr(Cost, 'U')>0, 'Blue',\r",
 				"    iif(instr(Cost, 'W')>0, 'White', \r",
 				"    iif(isNull(Cost), 'Land','Colourless')))))),",
-				"          overallPrice = toDecimal(right(Price, length(Price)-1))*toDecimal(Count)) ~> colourIdentityDerivation",
+				"          overallPrice = toString(toDecimal(right(Price, length(Price)-1))*toDecimal(Count))) ~> colourIdentityDerivation",
 				"colourIdentityDerivation select(mapColumn(",
 				"          Name,",
 				"          Count,",
