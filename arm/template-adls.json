@@ -180,8 +180,8 @@
             "apiVersion": "2023-05-01",
             "name": "[concat(parameters('storageAccounts_storagedemo1qh5sv6_name'), '/default/files')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Storage/storageAccounts/blobServices', parameters('storageAccounts_storagedemo1qh5sv6_name'), 'default')]",
-                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_storagedemo1qh5sv6_name'))]"
+                "[resourceId('Microsoft.Storage/storageAccounts/blobServices', parameters('storageAccountName'), 'default')]",
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]"
             ],
             "properties": {
                 "immutableStorageWithVersioning": {

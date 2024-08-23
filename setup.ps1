@@ -24,6 +24,7 @@ New-AzResourceGroupDeployment `
 $sqlServerName = "sql-server-demo-"+$suffix
 $sqlDbName = "sql-db-demo-"+$suffix
 write-host "deploying sql server ("$sqlServerName") + database ("$sqlDbName")..."
+Write-host ""
 
 $sqlPassword = ""
 $complexPassword = 0
@@ -63,15 +64,15 @@ New-AzResourceGroupDeployment `
 ######################################
 ## Storage account
 ######################################
-$storageAccountName = "adlsdemo"+$suffix
-write-host "deploying storage account resource ("$storageAccountName")..."
+$accountName = "adlsdemo"+$suffix
+write-host "deploying storage account resource ("$accountName")..."
 
 New-AzResourceGroupDeployment `
     -Name adlsDeployment `
     -ResourceGroupName $rg.ResourceGroupName `
     -TemplateFile arm/template-adls.json `
     -TemplateParameterFile arm/parameters-adls.json `
-    -storageAccountName $storageAccountName
+    -storageAccountName $accountName
 
 
 # Upload files
