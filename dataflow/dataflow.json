@@ -16,7 +16,7 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "inventoryOutput",
+						"referenceName": "mtginventory_staging",
 						"type": "DatasetReference"
 					},
 					"name": "output"
@@ -89,14 +89,15 @@
 				"     skipDuplicateMapOutputs: true) ~> filterColumns",
 				"filterColumns sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     partitionFileNames:['inventory.csv'],",
-				"     umask: 0022,",
-				"     preCommands: [],",
-				"     postCommands: [],",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     truncate:true,",
+				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     partitionBy('hash', 1),",
-				"     format: 'table') ~> output"
+				"     errorHandlingOption: 'stopOnFirstError') ~> output"
 			]
 		}
 	}
